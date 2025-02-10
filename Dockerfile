@@ -4,6 +4,6 @@ COPY pom.xml /home/app
 RUN mvn -f /home/app/pom.xml clean package -DskipTests
 
 FROM openjdk:17-slim
-COPY --from=build /home/app/target/product.jar /usr/local/lib/back.jar
+COPY --from=build /home/app/target/back.jar /usr/local/lib/back.jar
 EXPOSE 5800
 ENTRYPOINT ["java","-jar","/usr/local/lib/back.jar"]
