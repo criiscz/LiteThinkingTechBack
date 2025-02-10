@@ -1,4 +1,4 @@
-name: Deploy Product to Production
+name: Deploy Backend to Production
 on:
   push:
     branches:

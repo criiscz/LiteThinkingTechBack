@@ -1,6 +1,6 @@
-name: Build Test Cases MS
+name: Build Backend
 on:
-  pull_request:
+  push:
     branches:
       - main
 
