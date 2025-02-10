@@ -1,0 +1,42 @@
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /docs
+
+spring:
+  application:
+    name: LiteThinkingTechincal
+  config:
+    import: optional:file:.env[.properties]
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    password: ${PG_PASSWORD}
+    url: jdbc:postgresql://${PG_HOST}:${PG_PORT}/${PG_DATABASE}
+    username: ${PG_USER}
+    hikari:
+      schema: ${PG_DATABASE}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: false
+
+
+api:
+  version: 1.0.0
+  description: Documentation Product API ${api.version}
+
+
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: ${JWT_EXPIRATION}
+
+server:
+  port: 8080
+
+
+cognito:
+  issuer-uri: ${ISSUER_URI}
