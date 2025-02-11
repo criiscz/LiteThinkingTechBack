@@ -71,6 +71,11 @@ public class ClientRepositoryImpl implements ClientRepository {
         );
     }
 
+    @Override
+    public List<Client> getClients() {
+        return clientRepositoryJPA.findAll().stream().map(ClientMapper::toDomain).toList();
+    }
+
     private Specification<ClientDTO> buildSpecification(Map<String, Object> filters) {
         return (root, query, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();

@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -39,6 +40,11 @@ public class ProductController {
     ) {
         Map<String, Object> filters = buildFilters(name, categoryId);
         return ResponseEntity.ok(getAllProductsUseCase.execute(page, size, filters));
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<ProductOutput>> getAllProducts() {
+        return ResponseEntity.ok(getAllProductsUseCase.execute());
     }
 
     @GetMapping("/{id}")

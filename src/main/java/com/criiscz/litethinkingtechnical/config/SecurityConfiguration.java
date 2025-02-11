@@ -50,6 +50,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/health").permitAll()
                         .requestMatchers("/actuator/**").permitAll()
                         .requestMatchers("/public/**").permitAll()
+                        .requestMatchers("/docs/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(oAuth2ResourceServerConfigurerCustomizer())

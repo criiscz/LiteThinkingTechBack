@@ -1,7 +1,7 @@
 package com.criiscz.litethinkingtechnical.app.orders.infrastructure.repository.dto;
 
 import com.criiscz.litethinkingtechnical.app.clients.infrastructure.repository.dto.ClientDTO;
-import com.criiscz.litethinkingtechnical.app.products.infrastructure.repository.dto.ProductDTO;
+import com.criiscz.litethinkingtechnical.app.orderProducts.infrastructure.repository.dto.OrderProductDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,7 +27,7 @@ public class OrderDTO {
     private ClientDTO client;
 
     @Column(name = "product_list")
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<ProductDTO> productList;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<OrderProductDTO> productList;
 
 }

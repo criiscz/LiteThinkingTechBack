@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @SecurityRequirement(name = "bearerAuth")
@@ -40,6 +41,11 @@ public class CompanyController {
     ) {
         Map<String, Object> filters = buildFilters(name, phone, address);
         return ResponseEntity.ok(getAllCompaniesUseCase.execute(page, size, filters));
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<CompanyOutput>> getAllCompanies() {
+        return ResponseEntity.ok(getAllCompaniesUseCase.execute());
     }
 
     @GetMapping("/{id}")

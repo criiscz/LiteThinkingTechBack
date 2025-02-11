@@ -12,4 +12,6 @@ public interface OrderRepository {
     boolean deleteOrder(Long id);
     Optional<Order> getOrderById(Long id);
     ResponseWithPaginationData<Order> getAllOrders(int page, int size);
+
+    List<Order> getAllOrders();
 }

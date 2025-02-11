@@ -1,7 +1,7 @@
 package com.criiscz.litethinkingtechnical.app.orders.domain.entity;
 
 import com.criiscz.litethinkingtechnical.app.clients.domain.entity.Client;
-import com.criiscz.litethinkingtechnical.app.products.domain.entity.Product;
+import com.criiscz.litethinkingtechnical.app.orderProducts.domain.entity.OrderProduct;
 import lombok.Builder;
 
 import java.util.List;
@@ -10,6 +10,6 @@ import java.util.List;
 public record Order(
         Long id,
         Client client,
-        List<Product> productList
+        List<OrderProduct> productList
 ) {
 }

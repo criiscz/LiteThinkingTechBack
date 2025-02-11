@@ -6,12 +6,15 @@ import com.criiscz.litethinkingtechnical.app.orders.infrastructure.repository.ma
 import com.criiscz.litethinkingtechnical.common.Entity.Pagination;
 import com.criiscz.litethinkingtechnical.common.Entity.ResponseWithPaginationData;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Repository
 @AllArgsConstructor
 public class OrderRepositoryImpl implements OrderRepository {
@@ -20,7 +23,9 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     @Override
     public Order saveOrder(Order order) {
-        return OrderMapper.toDomain(orderRepositoryJpa.save(OrderMapper.toDTO(order)));
+        var dtoOrder = OrderMapper.toDTO(order);
+        var dtoOrderSaved = orderRepositoryJpa.save(dtoOrder);
+        return OrderMapper.toDomain(dtoOrderSaved);
     }
 
     @Override
@@ -52,5 +57,10 @@ public class OrderRepositoryImpl implements OrderRepository {
                         .hasNext(orders.hasNext())
                         .build()
         );
+    }
+
+    @Override
+    public List<Order> getAllOrders() {
+        return orderRepositoryJpa.findAll().stream().map(OrderMapper::toDomain).toList();
     }
 }

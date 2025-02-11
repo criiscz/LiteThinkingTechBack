@@ -27,7 +27,6 @@ public class UserAuthenticationFilter extends OncePerRequestFilter {
             if (context.getAuthentication() instanceof JwtAuthenticationToken) {
                 JwtAuthenticationToken auth = (JwtAuthenticationToken) context.getAuthentication();
                 String cognitoSub = auth.getName();
-                System.out.println("cognitoSub: " + cognitoSub);
             }
         } catch (UsernameNotFoundException ex) {
 //            log.error("Encountered error while finding user with current authentication token", ex);

@@ -63,6 +63,11 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
+    public List<Product> findAll() {
+        return productRepositoryjpa.findAll().stream().map(ProductMapper::toDomain).toList();
+    }
+
+    @Override
     public Product update(String id, Product product) {
         ProductDTO productDTO = productRepositoryjpa.findById(id).orElseThrow();
         productDTO.setName(product.name());

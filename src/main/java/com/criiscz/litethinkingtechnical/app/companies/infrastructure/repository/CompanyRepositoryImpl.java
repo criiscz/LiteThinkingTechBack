@@ -62,6 +62,11 @@ public class CompanyRepositoryImpl implements CompanyRepository {
     }
 
     @Override
+    public List<Company> getCompanies() {
+        return companyRepositoryJPA.findAll().stream().map(CompanyMapper::toDomain).toList();
+    }
+
+    @Override
     public Company updateCompany(Company company, String id) {
         CompanyDTO companyDTO = companyRepositoryJPA.findById(id).orElseThrow();
         companyDTO.setName(company.name());

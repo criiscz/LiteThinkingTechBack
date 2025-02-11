@@ -16,6 +16,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/orders")
 @AllArgsConstructor
@@ -34,6 +36,11 @@ public class OrderController {
             @RequestParam(value = "size", required = false, defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size
     ) {
         return ResponseEntity.ok(getAllOrdersUseCase.execute(page, size));
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<OrderOutput>> getAllOrders() {
+        return ResponseEntity.ok(getAllOrdersUseCase.execute());
     }
 
     @GetMapping("/{id}")

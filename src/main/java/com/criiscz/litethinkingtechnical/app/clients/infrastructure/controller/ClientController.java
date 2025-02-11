@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -41,6 +42,11 @@ public class ClientController {
         return ResponseEntity.ok(getAllClientsUseCase.execute(page, size, filters));
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<ClientOutput>> getAllClients() {
+        return ResponseEntity.ok(getAllClientsUseCase.execute());
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<ClientOutput> getClientById(@PathVariable String id) {
         return ResponseEntity.ok(getClientByIdUseCase.execute(id));
@@ -51,7 +57,7 @@ public class ClientController {
         return ResponseEntity.ok(deleteClientUseCase.execute(id));
     }
 
-    @PostMapping("/create")
+    @PostMapping("/")
     public ResponseEntity<ClientOutput> createClient(@RequestBody ClientInput clientInput) {
         return ResponseEntity.ok(createClientUseCase.execute(clientInput));
     }

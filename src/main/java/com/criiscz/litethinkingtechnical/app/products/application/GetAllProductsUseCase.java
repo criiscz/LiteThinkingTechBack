@@ -8,6 +8,7 @@ import com.criiscz.litethinkingtechnical.common.UseCase;
 import com.criiscz.litethinkingtechnical.common.exception.ItemNotFoundException;
 import lombok.AllArgsConstructor;
 
+import java.util.List;
 import java.util.Map;
 
 @UseCase
@@ -18,5 +19,9 @@ public class GetAllProductsUseCase {
 
     public ResponseWithPaginationData<Product> execute(int page, int size, Map<String, Object> filters) {
         return productRepository.findAll(page, size, filters);
+    }
+
+    public List<ProductOutput> execute() {
+        return productRepository.findAll().stream().map(ProductOutput::fromProduct).toList();
     }
 }
