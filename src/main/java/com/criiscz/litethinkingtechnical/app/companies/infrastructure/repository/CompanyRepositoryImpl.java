@@ -68,7 +68,9 @@ public class CompanyRepositoryImpl implements CompanyRepository {
 
     @Override
     public Company updateCompany(Company company, String id) {
-        CompanyDTO companyDTO = companyRepositoryJPA.findById(id).orElseThrow();
+        CompanyDTO companyDTO = companyRepositoryJPA.findById(id).orElseThrow(
+                () -> new ItemNotFoundException("Company not found")
+        );
         companyDTO.setName(company.name());
         companyDTO.setPhone(company.phone());
         companyDTO.setAddress(company.address());
